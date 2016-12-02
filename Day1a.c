@@ -1,4 +1,4 @@
-//Day1.c
+//Day1a.c
 //
 //The first challenge is to navigate a city using taxicab geometry. In this
 //system, the distance between two points is the distance we have to walk to
