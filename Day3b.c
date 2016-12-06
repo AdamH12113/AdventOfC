@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 	//The usual command line argument check and input file opening
 	if (argc != 2)
 	{
-		fprintf(stderr, "Usage:\n\tDay2 <input filename>\n\n");
+		fprintf(stderr, "Usage:\n\tDay3 <input filename>\n\n");
 		return EXIT_FAILURE;
 	}
 
