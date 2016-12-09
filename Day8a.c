@@ -86,7 +86,6 @@ int main(int argc, char **argv)
 			maxC = (int)strtol(token, NULL, 10);
 			token = strtok(NULL, " ");
 			maxR = (int)strtol(token, NULL, 10);
-			printf("R: %d\tC: %d\n", maxR, maxC);
 			
 			//Now that we have the size of the rectangle, we just have to turn
 			//on the pixels.
@@ -115,11 +114,12 @@ int main(int argc, char **argv)
 				
 				//Now we do the rotations. The outer loop is completely
 				//independent from the inner loop.
-				for (p = 0; p < places, p++)
+				for (p = 0; p < places; p++)
 				{
-					//Do a single rotation
-					temp = pixels[r][MAX_COLUMNS - 1];
-					for (c = 1; c < MAX_COLUMNS; c++)
+					//Do a single rotation. Because we're rotating to the right,
+					//we need to start at the last column.
+					temp = pixels[r][NUM_COLUMNS - 1];
+					for (c = NUM_COLUMNS - 1; c > 0; c--)
 					{
 						pixels[r][c] = pixels[r][c-1];
 					}
@@ -127,16 +127,38 @@ int main(int argc, char **argv)
 				}
 			} else
 			{
-				//Rotate a column
-			} else
+				//Rotate a column. This uses the same format as for rows, so the
+				//same methods apply.
+				token = strtok(NULL, " x=");
+				c = strtol(token, NULL, 10);
+				
+				//Get the number of places to rotate
+				token = strtok(NULL, " by");
+				places = strtol(token, NULL, 10);
+
+				//Now do the rotations. Again, this is almost identical to the
+				//row version. If we wanted to, we could probably merge them
+				//with a few extra if statements. This would reduce code size
+				//and (maybe) improve maintainability with a small cost to
+				//performance.
+				for (p = 0; p < places; p++)
+				{
+					//Do a single rotation
+					temp = pixels[NUM_ROWS - 1][c];
+					for (r = NUM_ROWS - 1; r > 0; r--)
+					{
+						pixels[r][c] = pixels[r-1][c];
+					}
+					pixels[0][c] = temp;
+				}
+			}
+		} else
 		{
-			fprintf(stderr, "Error: Unrecognized command %s\n\n", token);
+			fprintf(stderr, "Error: Unrecognized command %s\n\n", line);
 			fclose(inFile);
 			return EXIT_FAILURE;
 		}
 	}
-		
-
 	
 	//Close the file as soon as we're done with it
 	fclose(inFile);
