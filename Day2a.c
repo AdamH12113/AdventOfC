@@ -100,10 +100,12 @@ typedef struct sButton
 
 int main(int argc, char **argv)
 {
-	//Integer division rounds down, so this gives us a pointer to the middle
-	//of the keypad with an odd number of rows and columns.
+	//Note that using typedefs to name structure types is somewhat
+	//controversial. See, for example:
+	//http://stackoverflow.com/questions/252780/why-should-we-typedef-a-struct-so-often-in-c
+	//https://www.kernel.org/doc/Documentation/CodingStyle
 	sButton buttons[NUM_ROWS][NUM_COLS];
-	sButton *b = &buttons[NUM_ROWS/2][NUM_COLS/2];
+	sButton *b = &buttons[1][1];
 	FILE *inFile;
 	int r, c, next;
 	int code = 0;
