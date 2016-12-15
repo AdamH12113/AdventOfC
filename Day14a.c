@@ -178,6 +178,9 @@ sHashInfo Get_Hash_Info(const uint8_t *hash, int *counts)
 			{
 				retVal.quintupletMask |= 1u << digits[d];
 				counts[digits[d]]++;
+				
+				//Skip ahead to avoid counting sextuplets as two quintuplets
+				d += 4;
 			}
 		}
 	}

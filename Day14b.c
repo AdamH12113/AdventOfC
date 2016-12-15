@@ -6,7 +6,19 @@
 //final hashes (but keeping everything else the same), what is the index of the
 //64th key?
 //
-//This is a straightforward modification of part A.
+//This is a straightforward modification of part A -- or so I thought! Turns out
+//there was a bug in part A that I didn't notice until now. One of the hashes
+//for the example salt "abc" has a six-digit repeat -- a rare hextuplet! The
+//code I had for the quintuplet check interpreted this as two quintuplets, which
+//threw off the counts. I went back and fixed the bug in part A, but this just
+//goes to show the importance of having good test coverage, and how even a
+//straightforward modification can turn into a head-scratcher with the right
+//bug.
+//
+//This question is also a good illustration of how easy it is to slow down a
+//modern computer with the right problem. It took over a minute for this program
+//to complete on my computer. I shudder to think how long it would have taken
+//twenty years ago...
 
 
 #include <stdio.h>
@@ -66,24 +78,23 @@ int main(int argc, char **argv)
 	{
 		//The first call to MD5() is the same
 		sprintf(inStr, "%s%lu", salt, index);
-		MD5(inStr, hash);
 		
 		//Here's the only part that's different. Once we get the hash, we use
 		//sprintf to convert it back into a string, then feed it into the MD5
 		//algorithm again and again.
-		for (h = 0; h < 2016; h++)
+		for (h = 0; h < 1+2016; h++)
 		{
+			MD5(inStr, hash);
+
 			//sprintf() doesn't concatenate for us, but pointer arithmetic will
 			//do the job nicely.
 			for (c = 0; c < HASH_CHARS; c++)
 			{
 				sprintf(inStr + 2*c, "%02x", hash[c]);
 			}
-			
-			MD5(inStr, hash);
 		}
 		
-		//From here on out it's all the same
+		//From here on out it's all the same, except...
 		info[CIDX(index)] = Get_Hash_Info(hash, quintCounts);
 		
 		for (hex = 0; hex < NUM_HEX_VALUES; hex++)
@@ -93,10 +104,9 @@ int main(int argc, char **argv)
 			{
 				keyCount++;
 				
-				printf("Key %d digit %x index %lu\t", keyCount, hex, index-1000);
-				for (c = NUM_HEX_VALUES-1; c >=0; c--)
-					printf(" %d", quintCounts[c]);
-				printf("\n");
+				//...since the program takes so long to run I added some output
+				printf("Key %2d found at index %5lu\n", keyCount,
+				                                        index - (KEY_RANGE-1));
 			}
 			
 			if (info[CIDX(index + 2)].quintupletMask & (1u << hex))
@@ -146,6 +156,9 @@ sHashInfo Get_Hash_Info(const uint8_t *hash, int *counts)
 			{
 				retVal.quintupletMask |= 1u << digits[d];
 				counts[digits[d]]++;
+				
+				//Skip ahead to avoid counting sextuplets as two quintuplets
+				d += 4;
 			}
 		}
 	}
