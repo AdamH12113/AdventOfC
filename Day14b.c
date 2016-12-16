@@ -40,6 +40,7 @@ typedef struct
 #define NUM_HEX_VALUES    16
 #define HASH_CHARS        16
 #define NEEDED_KEYS       64
+#define NUM_REHASHES    2016
 
 //No change to the buffer
 #define CIDX(n) ((n) % KEY_RANGE)
@@ -82,7 +83,7 @@ int main(int argc, char **argv)
 		//Here's the only part that's different. Once we get the hash, we use
 		//sprintf to convert it back into a string, then feed it into the MD5
 		//algorithm again and again.
-		for (h = 0; h < 1+2016; h++)
+		for (h = 0; h < 1+NUM_REHASHES; h++)
 		{
 			MD5(inStr, hash);
 
