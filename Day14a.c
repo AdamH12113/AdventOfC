@@ -85,7 +85,7 @@ int main(int argc, char **argv)
 	//No input file this time, just a some letters
 	if (argc != 2)
 	{
-		fprintf(stderr, "Usage:\n\tDay14 <input filename>\n\n");
+		fprintf(stderr, "Usage:\n\tDay14 <input data>\n\n");
 		return EXIT_FAILURE;
 	}
 	salt = argv[1];

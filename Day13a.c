@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 	//No input file this time, just a number
 	if (argc != 2)
 	{
-		fprintf(stderr, "Usage:\n\tDay13 <input filename>\n\n");
+		fprintf(stderr, "Usage:\n\tDay13 <input data>\n\n");
 		return EXIT_FAILURE;
 	}
 
