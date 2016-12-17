@@ -5,7 +5,8 @@
 //
 //I should've seen this one coming! Using a fixed-size buffer was a bad idea.
 //Fortunately, knowing how much data we need means we can determine an upper
-//bound on the array size.
+//bound on the array size. Aside from dynamically allocating memory for the
+//buffer, everything else is the same.
 
 
 #include <stdio.h>
@@ -33,9 +34,6 @@ int main(int argc, char **argv)
 	//We need to use strtol() here since the second argument can be so big
 	numChars = strlen(argv[1]);
 	dataNeeded = strtol(argv[2], NULL, 10);
-	
-	printf("Input size: %zu\n", numChars);
-	printf("Data needed: %zu\n", dataNeeded);
 	
 	//The algorithm always stops if we have more than dataNeeded characters. The
 	//largest amount of data we can generate is thus the result of using the
