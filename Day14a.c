@@ -8,7 +8,8 @@
 //whether they're keys too.
 //
 //The hash is produced from a salt (our input -- a short sequence of letters)
-//and an increasing integer index. Again, this is similar to Day 5.
+//and an increasing integer index. Again, this is similar to Day 5. For me, the
+//salt was "jlmsuwbz".
 //
 //Question 1: What index produces the 64th key?
 //

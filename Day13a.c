@@ -6,7 +6,7 @@
 //determine which is which, we use the following method:
 //
 //1. Compute x^2 + 3x + 2xy + y + y^2.
-//2. Add our input, which is a single number.
+//2. Add our input, which is a single number (1352 for me).
 //3. Count of number of 1 bits in the binary representation of the result.
 //4. If the number of bits is even, the location is an open space, otherwise
 //   it's a wall.

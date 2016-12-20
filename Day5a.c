@@ -7,7 +7,7 @@
 //Our input is a constant string of 8 characters. To get the full input
 //sequence, we concatenate numbers to the end of the string, starting with 0.
 //So if the input is "abcdefgh", the sequence is "abcdefgh0", "abcdefgh1",
-//"abcdefgh2" ... "abcdefgh10", "abcdefgh11", etc.
+//"abcdefgh2" ... "abcdefgh10", "abcdefgh11", etc. My input was "reyedfim".
 //
 //Question 1: Each digit of the password come from the sixth hexadecimal digit
 //of a sum that starts with five zeros. If the password is the first eight such

@@ -1,4 +1,4 @@
-//Day18a.c
+//Day18.c
 //
 //The eighteenth challenge is to navigate a room full of pressure plate traps.
 //The room consists of a grid of tiles with distinct rows. The trapped tiles in

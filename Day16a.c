@@ -19,7 +19,7 @@
 //odd number of characters. This final string is the checksum.
 //
 //Question 1: If we need 272 characters of data, what is the checksum given the
-//provided input string?
+//provided input string? (Mine was 01000100010010111.)
 //
 //To solve this puzzle, we can do some straightforward array manipulation. The
 //checksum operation is basically an XNOR.
