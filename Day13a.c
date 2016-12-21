@@ -16,14 +16,29 @@
 //To solve this puzzle, we need to find the right algorithm. And the right
 //algorithm for this sort of thing is Dijkstra's shortest path algorithm. Since
 //the distance between adjacent rooms is always 1, we can use a simplfication --
-//a breadth-first search.
-
+//a breadth-first search. In this algorithm, we keep a queue of nodes on the
+//frontier of our search. When we evaluate a node, we check all of its exits to
+//look for new nodes and check for shorter paths to discovered nodes. Once all
+//of the exits of a node have been explored, the node is marked complete.
+//
+//The tricky part is how to represent and track the nodes. It would be easiest
+//to define a large array, which lets us use the coordinates more directly.
+//However, the maze is infinitely large, so we might have to travel arbitrarily
+//far to find the shortest path. And I have a feeling that part B's target will
+//be much farther away.
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 
+
+//For brevity, we'll call each location a "room". When we create a new room,
+//we'll 
+typedef struct sRoom
+{
+	struct sRoom *north, *south, *east, *west;
+}
 
 int main(int argc, char **argv)
 {
