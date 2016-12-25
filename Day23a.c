@@ -97,8 +97,8 @@ void Parse_Instruction(char *text, sMachine *state, sInstruction *inst);
 
 int main(int argc, char **argv)
 {
-	//The instructions and program are small, so we'll create fixed-size buffers
-	//for both.
+	//The instructions are still small, so we can keep using a fixed-size buffer
+	//for those.
 	FILE *inFile;
 	char line[32];
 	sMachine state;
@@ -173,6 +173,9 @@ int main(int argc, char **argv)
 		                                     state.program[state.pc].op2,
 									         &state);
 	}
+	
+	//Free the program memory
+	free(state.program);
 	
 	//Print the final state of the machine
 	printf("Final state\n");

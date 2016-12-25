@@ -152,6 +152,9 @@ int main(int argc, char **argv)
 									         &state);
 	}
 	
+	//Free the program memory
+	free(state.program);
+	
 	//Print the final state of the machine
 	printf("Final state\n");
 	Print_Machine_State(&state);
