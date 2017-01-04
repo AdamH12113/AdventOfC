@@ -4,7 +4,9 @@
 //reached in at most 50 steps?
 //
 //To solve this puzzle, we just need to explore a subset of the maze, then count
-//how many rooms have a distance less than or equal to 50.
+//how many rooms have a distance less than or equal to 50. This means we won't
+//actually have to enlarge the maze -- our starting subset is more than 50 rooms
+//across, so it's good enough for this problem.
 
 
 #include <stdio.h>

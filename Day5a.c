@@ -43,7 +43,7 @@
 #define MD5SIZE  16
 #define PWSIZE   8
 
-void MD5(char *input, uint8_t *output);
+void MD5(const char *input, uint8_t *output);
 
 int main(int argc, char **argv)
 {
@@ -162,7 +162,7 @@ const int k[64] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,  //R1
 #define MSG_WORDLEN  16
 
 //Now we can get into the actual function
-void MD5(char *input, uint8_t *output)
+void MD5(const char *input, uint8_t *output)
 {
 	//The input must be padded to 512 bits, so we need a buffer for that. We
 	//also need four 32-bit state variables initialized to specific values.
