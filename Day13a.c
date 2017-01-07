@@ -241,9 +241,6 @@ int main(int argc, char **argv)
 		x = temp.x;
 		y = temp.y;
 		
-		//Mark the current room as visited
-		maze[x][y].visited = true;
-		
 		//Add unvisited, open, adjacent rooms to the queue. This is the breadth-
 		//first part of the search. The maze generation algorithm does not
 		//guarantee that the maze is bounded by walls, so we have to make sure

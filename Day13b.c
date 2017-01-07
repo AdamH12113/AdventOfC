@@ -167,6 +167,7 @@ int main(int argc, char **argv)
 		}
 	}
 	maze[STARTX][STARTY].distance = 0;
+	maze[STARTX][STARTY].visited = true;
 	
 	//We start out the same way
 	Init_Queue(&queue);
@@ -180,8 +181,6 @@ int main(int argc, char **argv)
 		temp = Dequeue(&queue);
 		x = temp.x;
 		y = temp.y;
-		
-		maze[x][y].visited = true;
 		
 		if (x > 0 && maze[x-1][y].isOpen && !maze[x-1][y].visited)
 		{
