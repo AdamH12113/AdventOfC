@@ -185,21 +185,25 @@ int main(int argc, char **argv)
 		
 		if (x > 0 && maze[x-1][y].isOpen && !maze[x-1][y].visited)
 		{
+			maze[x-1][y].visited = true;
 			maze[x-1][y].distance = maze[x][y].distance + 1;
 			Enqueue(&queue, x-1, y);
 		}
 		if (y > 0 && maze[x][y-1].isOpen && !maze[x][y-1].visited)
 		{
+			maze[x][y-1].visited = true;
 			maze[x][y-1].distance = maze[x][y].distance + 1;
 			Enqueue(&queue, x, y-1);
 		}
 		if (x < xSize && maze[x+1][y].isOpen && !maze[x+1][y].visited)
 		{
+			maze[x+1][y].visited = true;
 			maze[x+1][y].distance = maze[x][y].distance + 1;
 			Enqueue(&queue, x+1, y);
 		}
 		if (y < ySize && maze[x][y+1].isOpen && !maze[x][y+1].visited)
 		{
+			maze[x][y+1].visited = true;
 			maze[x][y+1].distance = maze[x][y].distance + 1;
 			Enqueue(&queue, x, y+1);
 		}

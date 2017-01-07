@@ -223,6 +223,7 @@ int main(int argc, char **argv)
 		}
 	}
 	maze[STARTX][STARTY].distance = 0;
+	maze[STARTX][STARTY].visited = true;
 	
 	//Initialize the queue and add the starting location as the first element
 	Init_Queue(&queue);
@@ -251,25 +252,33 @@ int main(int argc, char **argv)
 		//indices are never evaluated.
 		if (x > 0 && maze[x-1][y].isOpen && !maze[x-1][y].visited)
 		{
+			//Mark the new room as visited to prevent it from being added to the
+			//queue multiple times.
+			maze[x-1][y].visited = true;
+
 			//The new room is one step away from the current, so its distance is
 			//one plus the current distance. Again, this search guarantees that
 			//the first time we encounter the room will be on a shortest path.
 			maze[x-1][y].distance = maze[x][y].distance + 1;
 			Enqueue(&queue, x-1, y);
+			
 		}
 		if (y > 0 && maze[x][y-1].isOpen && !maze[x][y-1].visited)
 		{
 			//Same logic as above
+			maze[x][y-1].visited = true;
 			maze[x][y-1].distance = maze[x][y].distance + 1;
 			Enqueue(&queue, x, y-1);
 		}
 		if (x < xSize && maze[x+1][y].isOpen && !maze[x+1][y].visited)
 		{
+			maze[x+1][y].visited = true;
 			maze[x+1][y].distance = maze[x][y].distance + 1;
 			Enqueue(&queue, x+1, y);
 		}
 		if (y < ySize && maze[x][y+1].isOpen && !maze[x][y+1].visited)
 		{
+			maze[x][y+1].visited = true;
 			maze[x][y+1].distance = maze[x][y].distance + 1;
 			Enqueue(&queue, x, y+1);
 		}
